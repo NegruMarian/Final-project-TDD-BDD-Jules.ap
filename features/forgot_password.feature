@@ -8,7 +8,11 @@ Feature: Jules.app forgot password test
                               # am trecut ce vrem sa testam
       When sign in: I click the forgot password link
       When forgot password: I set my email to "abc"
-      Then forgot password: I verify that email validation message is correct
+      When forgot password: I verify that email validation message is correct
+      When forgot password: I delete the email
+      When forgot password: I set valid email to "abc@gmail.com"
+      When forgot password: I click the send email button
+      Then forgot password: I click on Back to Login button
 
 
     @jules2
@@ -25,8 +29,8 @@ Feature: Jules.app forgot password test
 
   Scenario Outline: Forgot pass cu tabel de valori
     When login: user clicks on forgot pass button
-      When forgot_pass: user enters email address in email input "<valid_email>"
-      Then forgot_pass: verify that send email button is enabled
+    When forgot_pass: user enters email address in email input "<valid_email>"
+    Then forgot_pass: verify that send email button is enabled
 
     Examples:
       | valid_email             |

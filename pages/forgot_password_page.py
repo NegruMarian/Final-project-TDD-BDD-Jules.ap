@@ -14,15 +14,24 @@ class Forgot_password_page(Base_page):
         self.chrome.find_element(*self.EMAIL_INPUT).send_keys(email)
         sleep(1)
 
-
-
     def click_send_email_button(self):
         self.chrome.find_element(*self.SEND_EMAIL_BTN).click()
-
-    def click_back_to_login_link(self):
-        self.chrome.find_element(*self.BACK_TO_LOGIN).click()
+        sleep(2)
 
     def verify_email_error_msg(self):
         expected = 'Please enter a valid email address!'
         actual = self.chrome.find_element(*self.INVALID_EMAIL_MESSAGE).text
-        self.assertEqual(expected,actual,"The message returned by the page is incorrect")
+        self.assertEqual(expected, actual, "The message returned by the page is incorrect")
+
+    def delete_email(self):
+        self.chrome.find_element(*self.EMAIL_INPUT).clear()
+        sleep(3)
+
+    def set_valid_email(self,email):
+        self.chrome.find_element(*self.EMAIL_INPUT).send_keys(email)
+        sleep(2)
+
+
+
+    def click_back_to_login_link(self):
+        self.chrome.find_element(*self.BACK_TO_LOGIN).click()
